@@ -15,6 +15,7 @@ try:
 except ImportError:
     import sys
 
+
     def _resolve_name(name, package, level):
         """Return the absolute name of the module to be imported."""
         if not hasattr(package, 'rindex'):
@@ -25,7 +26,7 @@ except ImportError:
                 dot = package.rindex('.', 0, dot)
             except ValueError:
                 raise ValueError("attempted relative import beyond top-level "
-                                  "package")
+                                 "package")
         return "%s.%s" % (package[:dot], name)
 
 
@@ -48,6 +49,7 @@ except ImportError:
             name = _resolve_name(name[level:], package, level)
         __import__(name)
         return sys.modules[name]
+
 
 def load_backend(backend_name):
     """ load pool backend. If this is an external module it should be
@@ -80,6 +82,7 @@ def can_use_kqueue():
         return False
 
     return True
+
 
 def is_connected(skt):
     try:

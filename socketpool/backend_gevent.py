@@ -11,14 +11,14 @@ from gevent import queue
 try:
     from gevent import lock
 except ImportError:
-    #gevent < 1.0b2
+    # gevent < 1.0b2
     from gevent import coros as lock
-
 
 sleep = gevent.sleep
 Semaphore = lock.BoundedSemaphore
 Socket = socket.socket
 Select = select.select
+
 
 class PriorityQueue(queue.PriorityQueue):
 
@@ -28,10 +28,11 @@ class PriorityQueue(queue.PriorityQueue):
         except queue.Empty:
             raise StopIteration
         return result
+
     next = __next__
 
-class ConnectionReaper(gevent.Greenlet):
 
+class ConnectionReaper(gevent.Greenlet):
     running = False
 
     def __init__(self, pool, delay=150):

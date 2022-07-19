@@ -15,6 +15,7 @@ Socket = socket.socket
 Select = select.select
 Semaphore = eventlet.semaphore.BoundedSemaphore
 
+
 class PriorityQueue(queue.PriorityQueue):
 
     def __iter__(self):
@@ -26,10 +27,11 @@ class PriorityQueue(queue.PriorityQueue):
         except queue.Empty:
             raise StopIteration
         return result
+
     next = __next__
 
-class ConnectionReaper(object):
 
+class ConnectionReaper(object):
     running = False
 
     def __init__(self, pool, delay=150):

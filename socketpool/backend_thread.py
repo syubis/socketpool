@@ -11,7 +11,7 @@ import weakref
 
 try:
     import Queue as queue
-except ImportError: # py3
+except ImportError:  # py3
     import queue
 
 Select = select.select
@@ -31,7 +31,9 @@ class PriorityQueue(queue.PriorityQueue):
         except queue.Empty:
             raise StopIteration
         return result
+
     next = __next__
+
 
 class ConnectionReaper(threading.Thread):
     """ connection reaper thread. Open a thread that will murder iddle
@@ -59,5 +61,5 @@ class ConnectionReaper(threading.Thread):
                 break
 
     def ensure_started(self):
-        if not self.running and not self.isAlive():
+        if not self.running and not self.is_alive():
             self.start()

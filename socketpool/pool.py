@@ -8,11 +8,14 @@ import time
 
 from socketpool.util import load_backend
 
+
 class MaxTriesError(Exception):
     pass
 
+
 class MaxConnectionsError(Exception):
     pass
+
 
 class ConnectionPool(object):
     """Pool of connections
@@ -96,7 +99,7 @@ class ConnectionPool(object):
 
     def start_reaper(self):
         self._reaper = self.backend_mod.ConnectionReaper(self,
-                delay=self.reap_delay)
+                                                         delay=self.reap_delay)
         self._reaper.ensure_started()
 
     def stop_reaper(self):

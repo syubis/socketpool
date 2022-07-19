@@ -9,6 +9,7 @@ import random
 
 from socketpool import util
 
+
 class Connector(object):
     def matches(self, **match_options):
         raise NotImplementedError()
@@ -73,7 +74,6 @@ class UnixConnector(Connector):
 
     def recv(self, size=1024):
         return self._s.recv(size)
-
 
 
 class TcpConnector(Connector):
